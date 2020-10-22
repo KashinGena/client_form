@@ -18,9 +18,9 @@
     <div class="form__button-container">
       <a
         class="form__button form__button_left"
-       
        @click.stop="goBack($event)"
-       :disabled="current===0"      
+        :class="{form__button_disabled:current===0}"
+        
       >
         Назад
       </a>
@@ -83,13 +83,12 @@ export default {
       this.isWantChange = true;
       setTimeout(() => {
         if (this.isValid) {
-          console.log(this.isValid);
           this.isWantChange = false
           this.currentForm += 1
         }
       }, 0);
         setTimeout(() => this.isWantChange = false,0)
-       console.log(this.isValid);    
+ 
     },
 
  createUser() {
@@ -105,20 +104,12 @@ export default {
   },
 
 
-    goBack(event) {
-     console.log(event.target);
-       console.log(event.currentTarget);
-      console.log("dfg");
-      
-      this.currentForm -= 1;
+    goBack() {
+      if (this.current!==0)
+        this.currentForm -= 1;
     },
 
-     onValid(value) {
-       console.log('change');
-       
-       this.isWantChange = value;
-      
-    },
+
   
   },
 };
